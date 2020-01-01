@@ -1,0 +1,4 @@
+startup
+deploy
+node_modules
+.env

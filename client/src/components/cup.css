@@ -1,0 +1,46 @@
+.cup {
+	transform-style: preserve-3d;
+	position: relative;
+	left: 69vw;
+	top: 60vw;
+}
+
+.cup-face {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 140px;
+	background: linear-gradient(
+		0deg,
+		rgba(255, 255, 255, 0.2) 0%,
+		rgba(255, 255, 255, 0.2) 61%,
+		rgba(87, 46, 4, 0.9) 64%,
+		rgba(87, 46, 4, 0.9) 100%
+	);
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(2px);
+}
+
+.cup-face::before {
+	content: '';
+	position: absolute;
+	bottom: 2px;
+	left: -1px;
+	right: -1px;
+	height: 5px;
+	background-color: white;
+	filter: blur(2px);
+	border-radius: 50%;
+}
+
+.cup-base {
+	position: absolute;
+	top: 10px;
+	left: -40px;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.5);
+	filter: blur(1px);
+}

@@ -1,0 +1,29 @@
+.ColorPicker {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 0;
+	border-top: 1px solid #272727;
+	border-bottom: 1px solid #272727;
+}
+
+.ColorPicker li {
+	display: block;
+	flex: 1 1 auto;
+	height: 40px;
+}
+
+.AvatarContainer--edit {
+	width: 80vw;
+	height: 80vw;
+	border: 10px solid #444444;
+}
+
+.AvatarContainer canvas {
+	border-radius: 50%;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}

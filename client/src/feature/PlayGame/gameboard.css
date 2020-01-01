@@ -1,0 +1,198 @@
+.gameboard {
+	position: relative;
+}
+
+.gameboard::before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	width: calc(100% + 20px);
+	height: calc(100% + 20px);
+	background: url('/images/background.png');
+	background-size: 1600px;
+	background-repeat: no-repeat;
+	background-position: 32% -57px;
+	filter: blur(3px);
+}
+
+.gameboard h1 {
+	color: white;
+	z-index: 1;
+}
+
+.container {
+	overflow: hidden;
+}
+.stage {
+	width: 150vw;
+	height: 150vw;
+	background: url('/images/table.jpg');
+	transform-style: preserve-3d;
+}
+
+.edge {
+	background: url('/images/table.jpg');
+	background-size: cover;
+	position: absolute;
+	filter: brightness(0.3);
+	transform-origin: bottom center;
+	transform-style: preserve-3d;
+}
+
+.edge.top {
+	top: -50px;
+	left: 0;
+	right: 0;
+	height: 50px;
+	transform-origin: bottom center;
+	transform: rotate3d(1, 0, 0, 90deg);
+}
+
+.edge.bottom {
+	bottom: -50px;
+	left: 0;
+	right: 0;
+	height: 50px;
+	transform-origin: top center;
+	transform: rotate3d(1, 0, 0, -90deg);
+}
+
+.edge.left {
+	left: -50px;
+	top: 0;
+	bottom: 0;
+	width: 50px;
+	transform-origin: center right;
+	transform: rotate3d(0, 1, 0, -90deg);
+}
+
+.edge.right {
+	right: -50px;
+	top: 0;
+	bottom: 0;
+	width: 50px;
+	transform-origin: center left;
+	transform: rotate3d(0, 1, 0, 90deg);
+}
+
+.PlayingCard {
+	position: absolute;
+	width: 60px;
+	top: 45%;
+	left: 45%;
+	transition: transform 0.4s ease;
+	z-index: 1;
+}
+
+.draw-container {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.draw-container button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	background: black;
+	border-bottom-left-radius: 50%;
+	border: none;
+	color: white;
+	font-weight: bold;
+}
+
+.card-rule-container {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+}
+
+.card-rule-container img {
+	flex: 1 1 auto;
+	margin: 0 auto;
+}
+
+.card-rule-container div {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	flex: 1 1 auto;
+	background-color: rgba(220, 21, 41, 0.4);
+}
+
+.card-rule-container div span {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+	font-size: 2em;
+	color: white;
+}
+
+.Toastify__toast-body .AvatarContainer {
+	animation: 0.6s ease-out 0s enterRight;
+	animation-delay: 0.4s;
+	animation-fill-mode: both;
+	position: absolute;
+	bottom: -35px;
+	right: 20px;
+	z-index: 2;
+	/* opacity: 0; */
+}
+
+.Toastify__toast-body .AvatarContainer--card {
+	animation-delay: 0.7s;
+	bottom: -47px;
+	right: unset;
+	right: 50px;
+	z-index: 1;
+}
+
+.Toastify__toast {
+	overflow: unset !important;
+	padding-bottom: 20px !important;
+}
+
+@keyframes enterRight {
+	from {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.endgame-splash {
+	position: absolute;
+	top: 30vh;
+	color: white;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.endgame-splash button {
+	width: 70%;
+	border: 2px solid #50d890;
+	padding: 15px;
+	margin-bottom: 20px;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	border-radius: 4px;
+	font-size: 16px;
+}
+.endgame-splash button.leave {
+	border-color: rgb(220, 21, 41);
+}

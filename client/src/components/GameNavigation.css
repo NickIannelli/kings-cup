@@ -1,0 +1,53 @@
+.Header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+}
+
+.Header.is-hidden {
+	position: static;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.Header-actionBar {
+	display: flex;
+	background-color: #323137;
+	height: 18px;
+	align-content: space-between;
+	flex-direction: row;
+}
+
+.Header-actionBar button {
+	margin: 0;
+	padding: 0 10px;
+	color: #fefefa;
+	background: none;
+	border: none;
+	flex: 0 0 auto;
+}
+.Header-actionBar .spacer {
+	flex: 1 1 auto;
+}
+
+.Header-title {
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	color: white;
+	padding: 0;
+	background: linear-gradient(
+		38deg,
+		rgba(29, 29, 29, 0.8) 0%,
+		rgba(29, 29, 29, 0.8) 45%,
+		rgba(247, 192, 67, 0.9) 69%,
+		rgba(247, 192, 67, 0.9) 100%
+	);
+}
+
+.Header-title h1 {
+	line-height: 1.6em;
+	margin: 0;
+	padding: 0;
+}

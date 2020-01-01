@@ -1,0 +1,49 @@
+.PlayerList {
+	position: absolute;
+	top: 80px;
+	right: 0;
+	text-align: right;
+	color: white;
+	z-index: 1;
+	pointer-events: none;
+}
+
+.PlayerList li {
+	position: relative;
+	padding: 4px 20px 4px 30px;
+	line-height: 17px;
+	margin-bottom: 10px;
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
+	background-color: rgba(122, 122, 122, 0.4);
+}
+
+.PlayerList li .AvatarContainer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 25px;
+	height: 25px;
+	border: none;
+}
+
+.PlayerList li.self {
+	background-color: rgba(240, 207, 133, 0.4) /* #f0cf85 */;
+}
+
+.PlayerList li.selected {
+	background-color: white;
+	color: black;
+	box-shadow: 0 0 5px 0 white;
+}
+
+.PlayerList li.self.selected {
+	background-color: #f0cf85;
+	color: black;
+}
+
+.PlayerList .StatusDot {
+	top: 20px;
+	width: 10px;
+	height: 10px;
+}

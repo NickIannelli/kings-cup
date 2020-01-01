@@ -1,0 +1,13 @@
+{
+	"name": "kings-cup",
+	"version": "1.0.0",
+	"description": "Kings cup game",
+	"main": "index.js",
+	"scripts": {
+		"start": "echo \"See server & client packages for details\" && exit 1"
+	},
+	"homepage": "https://github.com/NiQDeveloper/kings-cup",
+	"author": "Nick Iannelli",
+	"license": "ISC",
+	"dependencies": {}
+}
