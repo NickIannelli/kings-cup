@@ -2,7 +2,7 @@ import * as actions from '@kings-cup/shared/actions';
 import { omit } from 'lodash';
 import { State, Action, Card, RuleCard, Action_CardDrawn } from './types';
 import { KingsCupRoom } from './room';
-import { Room } from 'colyseus';
+import { Room, Client } from 'colyseus';
 
 const handler: any = {
 	[actions.disconnect]: (_: State, action: Action) => {
@@ -73,6 +73,13 @@ const handler: any = {
 		});
 		state.hasStarted = false;
 		this.unlock();
+	},
+
+	[actions.kickPlayer]: function kickPlayer(this: KingsCupRoom, _, action: Action) {
+		const target = this.clients.find(client => client.id === action.payload.sessionId);
+		if (target) {
+			this.send(target, 'FORCE_DC');
+		}
 	}
 };
 

@@ -49,7 +49,9 @@ export const DrawScreen = () => {
 	useScrollLock();
 
 	const save = () => {
-		send(saveAvatar(document.querySelector('canvas').toDataURL()));
+		const avatar = document.querySelector('canvas').toDataURL();
+		send(saveAvatar(avatar));
+		localStorage.setItem('@KC_Avatar', avatar);
 		history.push('/game/lobby');
 	};
 

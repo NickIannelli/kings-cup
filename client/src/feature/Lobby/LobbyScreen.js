@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useRouteMatch, withRouter } from 'react-router-dom';
-import { setUsername, startGame } from '@kings-cup/shared/actions';
+import { setUsername, startGame, saveAvatar, kickPlayer } from '@kings-cup/shared/actions';
 import { useGameState, useMessageHandler } from './../../@library/GameConnector';
 import { getCardImage } from './../../util/image';
 
@@ -8,7 +8,7 @@ export const LobbyScreen = ({ history }) => {
 	const { path } = useRouteMatch();
 	const { state = {}, getSelf } = useGameState();
 	const send = useMessageHandler();
-	const [name, setName] = React.useState('');
+	const [name, setName] = React.useState(localStorage.getItem('@KC_Name') || '');
 
 	const { name: selfName, id: selfId } = getSelf();
 	React.useEffect(() => {
@@ -21,14 +21,28 @@ export const LobbyScreen = ({ history }) => {
 		}
 	}, [state.hasStarted]);
 
+	React.useEffect(() => {
+		if (localStorage.getItem('@KC_Name')) {
+			send(setUsername(localStorage.getItem('@KC_Name')));
+		}
+		if (localStorage.getItem('@KC_Avatar')) {
+			send(saveAvatar(localStorage.getItem('@KC_Avatar')));
+		}
+	}, []);
+
 	const onSubmit = e => {
 		e.preventDefault();
 		send(setUsername(name));
 		document.activeElement.blur();
+		localStorage.setItem('@KC_Name', name);
 	};
 
 	const start = () => {
 		send(startGame());
+	};
+
+	const kick = id => {
+		send(kickPlayer(id));
 	};
 
 	return (
@@ -49,6 +63,11 @@ export const LobbyScreen = ({ history }) => {
 								{player.name || id}
 								{player.isHost ? '*' : ''}
 							</div>
+							{getSelf().isHost && !player.isHost && (
+								<button type="button" onClick={() => kick(id)} className="kick-button">
+									Kick
+								</button>
+							)}
 						</li>
 					);
 				})}

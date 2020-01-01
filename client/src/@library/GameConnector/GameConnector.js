@@ -73,9 +73,17 @@ class GameConnector extends React.Component {
 			});
 			room.onStateChange(this.setState.bind(this));
 			room.onMessage(message => {
+				if (message === 'FORCE_DC') {
+					room.leave();
+					this.props.history.push('/');
+				}
 				this.setState(state => ({ messages: [...state.messages, message] }));
 			});
 			window.localStorage.setItem(key, JSON.stringify(pick(room, 'id', 'sessionId', 'name')));
+			if (this.state._processing) {
+				this.state._processing.forEach(room.send.bind(room));
+				delete this.state._processing;
+			}
 		} catch (e) {
 			console.log('could not join room', e);
 			this.props.history.push('/');
@@ -104,7 +112,9 @@ export const useMessageHandler = () => {
 		};
 	}
 	// stubbed method when room doesn't exist
-	return () => {};
+	return message => {
+		state._processing = [...(state._processing || []), message];
+	};
 };
 
 export const useOnMessageReceived = fn => {

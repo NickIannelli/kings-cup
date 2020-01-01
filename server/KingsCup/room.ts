@@ -41,9 +41,8 @@ export class KingsCupRoom extends Room {
 	}
 
 	async onLeave(client: Client, consented: boolean) {
-		this.state.players[client.sessionId].connected = false;
-
 		try {
+			this.state.players[client.sessionId].connected = false;
 			if (consented) {
 				throw new Error('consented leave!');
 			}
@@ -54,14 +53,17 @@ export class KingsCupRoom extends Room {
 			this.state.players[newClient.sessionId].connected = true;
 		} catch (e) {
 			console.log('disconnected!', client.sessionId);
-			// Add logic to move active/isHost attributes
-			const { active } = this.state;
-			const index = Object.keys(this.state.players).findIndex(key => key === client.sessionId);
-			if (index < active) {
-				this.state.active = active - 1;
-			} else if (active === Object.keys(this.state.players).length - 1) {
-				// Last person on list DC'd, and it's their turn = go to first persons turn
-				this.state.active = 0;
+			// Add logic to move isHost attributes
+			const { active, hasStarted } = this.state;
+
+			if (hasStarted) {
+				const index = Object.keys(this.state.players).findIndex(key => key === client.sessionId);
+				if (index < active) {
+					this.state.active = active - 1;
+				} else if (active === Object.keys(this.state.players).length - 1) {
+					// Last person on list DC'd, and it's their turn = go to first persons turn
+					this.state.active = 0;
+				}
 			}
 			delete this.state.players[client.sessionId];
 		}
@@ -82,11 +84,12 @@ export class KingsCupRoom extends Room {
 	populateDeck() {
 		let deck = [] as any;
 		for (let suits = 0; suits < 4; suits++) {
-			for (let values = 1; values < 13; values++) {
+			for (let values = 1; values <= 13; values++) {
 				deck.push({ suit: Suit[suits], value: getValue(values) });
 			}
 		}
 		deck = shuffle(deck);
+		// Note: Have to do it this way as the shuffle lodash method doesn't recognise ArraySchema as an array... :S
 		deck.forEach(card => {
 			const newCard = new Card();
 			newCard.suit = card.suit;

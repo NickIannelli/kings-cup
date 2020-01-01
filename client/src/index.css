@@ -214,3 +214,16 @@ body,
 .StatusDot.red {
 	background-color: #9d0b0b;
 }
+
+.kick-button {
+	background: none;
+	border: none;
+	padding: 0 10px;
+	line-height: 0;
+	color: red;
+	font-weight: bold;
+}
+
+.scroll-lock * {
+	touch-action: none;
+}

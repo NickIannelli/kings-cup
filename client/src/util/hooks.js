@@ -5,8 +5,10 @@ const preventDefault = e => e.preventDefault();
 export const useScrollLock = () => {
 	React.useEffect(() => {
 		document.addEventListener('touchmove', preventDefault, { passive: false });
+		document.documentElement.classList.add('scroll-lock');
 		return () => {
 			document.removeEventListener('touchmove', preventDefault);
+			document.documentElement.classList.remove('scroll-lock');
 		};
 	});
 };
