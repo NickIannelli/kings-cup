@@ -1,4 +1,5 @@
 startup
 deploy
+update
 node_modules
 .env
